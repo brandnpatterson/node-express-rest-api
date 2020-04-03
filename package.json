@@ -6,16 +6,12 @@
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
-    "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "jest"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test/setup/setupTests.js",
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "<rootDir>/test/setup"
-    ]
+    "start": "node index.js",
+    "lint": "eslint . --ignore-path .gitignore",
+    "test": "jest",
+    "prettier": "npm run prettier --ignore-path .gitignore \"**/*.+(js)\" -- --write",
+    "validate": "npm-run-all --parallel lint prettier test"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -23,6 +19,37 @@
     "pug": "^2.0.4"
   },
   "devDependencies": {
-    "jest": "^25.2.6"
+    "all": "0.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "husky": "^4.2.3",
+    "jest": "^25.2.6",
+    "lint-staged": "^10.1.1",
+    "npm": "^6.14.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.2",
+    "run": "^1.4.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup/setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/setup"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run validate"
+    }
+  },
+  "lint-staged": {
+    "*.+(js)": [
+      "eslint"
+    ],
+    "**/*.+(js)": [
+      "prettier --write"
+    ]
   }
 }
