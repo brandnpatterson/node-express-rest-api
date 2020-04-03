@@ -1,0 +1,28 @@
+{
+  "name": "penpals",
+  "private": true,
+  "version": "1.0.0",
+  "description": "penpals",
+  "main": "index.js",
+  "author": "Brandon Patterson",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test/setup/setupTests.js",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/setup"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "jest": "^25.2.6"
+  }
+}

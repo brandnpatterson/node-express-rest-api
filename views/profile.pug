@@ -1,0 +1,8 @@
+extends layout
+
+block notifications
+    if alert
+        .alert(role="alert" class=`alert-${alert.type}`) #{alert.message}
+
+block content
+    h1 Hello, #{username}

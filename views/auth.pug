@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    form(action="post")
+        .form-group
+            label(for="username") Username
+            input(id="username" type="text" class="form-control")
+        .form-group
+            label(for="password") Password
+            input(id="password" type="password" class="form-control")
+        .form-group
+            button(type="submit" class="btn btn-primary form-control") Login
