@@ -8,5 +8,5 @@ app.set("view engine", "pug");
 app.use("/", router);
 
 app.listen(port, () => {
-  console.log(`Node is listening at http://localhost:${port}!`);
+  console.log(`Node is listening at http://localhost:${port}`);
 });
