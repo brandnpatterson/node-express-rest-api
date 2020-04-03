@@ -10,8 +10,10 @@
     "start": "node index.js",
     "lint": "eslint . --ignore-path .gitignore",
     "test": "jest",
-    "prettier": "npm run prettier --ignore-path .gitignore \"**/*.+(js)\" -- --write",
-    "validate": "npm-run-all --parallel lint prettier test"
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "format": "npm run prettier -- --write",
+    "check-format": "npm run prettier -- --list-different",
+    "validate": "npm-run-all --parallel check-format lint"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -39,17 +41,17 @@
       "<rootDir>/test/setup"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && npm run validate"
-    }
-  },
   "lint-staged": {
-    "*.+(js)": [
+    "*.+(js|ts|tsx)": [
       "eslint"
     ],
-    "**/*.+(js)": [
+    "**/*.+(js|ts|tsx)": [
       "prettier --write"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
