@@ -9,11 +9,9 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "lint": "eslint . --ignore-path .gitignore",
-    "test": "jest",
-    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
     "format": "npm run prettier -- --write",
-    "check-format": "npm run prettier -- --list-different",
-    "validate": "npm-run-all --parallel check-format lint"
+    "test": "jest"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -42,16 +40,16 @@
     ]
   },
   "lint-staged": {
-    "*.+(js|ts|tsx)": [
+    "*.+(js)": [
       "eslint"
     ],
-    "**/*.+(js|ts|tsx)": [
-      "prettier --write"
+    "**/*.+(js)": [
+      "npm run format"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run test && lint-staged"
     }
   }
 }
