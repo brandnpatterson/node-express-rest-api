@@ -7,7 +7,9 @@ exports.auth = (req, res) => {
 };
 
 exports.profile = (req, res) => {
-  res.render('profile', {
-    username: req.params.username,
-  });
+  res.render('profile');
+};
+
+exports.messages = (req, res) => {
+  res.render('messages');
 };
