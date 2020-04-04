@@ -19,7 +19,6 @@
     "pug": "^2.0.4"
   },
   "devDependencies": {
-    "all": "0.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "husky": "^4.2.3",
