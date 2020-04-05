@@ -9,7 +9,7 @@
     "start": "nodemon index.js --ignore client",
     "start:client": "npm run dev --prefix client",
     "dev": "npm run start & npm run start:client",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
     "format": "npm run prettier -- --write",
     "test": "jest",
