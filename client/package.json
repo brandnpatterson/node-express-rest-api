@@ -2,7 +2,7 @@
   "name": "node-app-client",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "node-app-client",
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
@@ -13,7 +13,7 @@
     "sass:build": "npm run sass --output-style compressed && npm run autoprefixer",
     "webpack:build": "webpack --mode production",
     "build": "npm run webpack:build && npm run sass:build",
-    "sass:dev": "node-sass src/scss -o dist/css & node-sass src/scss -o dist/css --watch && npm run autoprefixer",
+    "sass:dev": "node-sass src/scss -o dist/css --watch && npm run autoprefixer",
     "webpack:dev": "webpack --mode development --watch",
     "dev": "npm run del && npm run sass:dev & npm run webpack:dev & npm run browser-sync",
     "lint": "eslint .",
@@ -31,7 +31,6 @@
     "jest": "^25.2.7",
     "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^7.1.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
