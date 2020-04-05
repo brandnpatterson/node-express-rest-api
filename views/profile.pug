@@ -1,8 +1,14 @@
 extends layout
 
+block head
+    link(rel="stylesheet", href="dist/css/profile/style.css")
+
 block content
     h1 JS Framework
     ul
         li edit profile
         li change password
         li delete account
+
+block footer
+    script(src='dist/js/profile.bundle.js')

@@ -1,6 +1,12 @@
 extends layout
 
+block head
+    link(rel="stylesheet", href="dist/css/home/style.css")
+
 block content
     h1 Welcome to the site
 
     a(href="/auth") Log In
+
+block footer
+    script(src='dist/js/home.bundle.js')

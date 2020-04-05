@@ -2,9 +2,10 @@ const express = require('express');
 const router = require('./routes');
 
 const app = express();
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 5000;
 
 app.set('view engine', 'pug');
+app.use(express.static('client'));
 app.use('/', router);
 
 app.listen(port, () => {

@@ -3,10 +3,10 @@ module.exports = {
     node: true,
     commonjs: true,
     es6: true,
-    jest: true,
+    jest: true
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2018
   },
-  extends: ['eslint:recommended', 'eslint-config-prettier'],
+  extends: ['eslint:recommended', 'eslint-config-prettier']
 };

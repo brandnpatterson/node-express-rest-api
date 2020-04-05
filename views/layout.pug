@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
   head
     include partials/head.pug
+    block head
   body
     header
       include partials/header.pug
@@ -17,5 +18,4 @@ html(lang="en")
     footer
       .copyright
         include partials/footer.pug
-      .js-footer
-        block jsfooter
+        block footer

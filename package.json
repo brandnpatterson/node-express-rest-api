@@ -6,9 +6,10 @@
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon index.js --ignore client",
     "start": "node index.js",
-    "lint": "eslint . --ignore-path .gitignore",
+    "build-client": "npm run build --prefix client",
+    "lint": "eslint .",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
     "format": "npm run prettier -- --write",
     "test": "jest"
@@ -25,9 +26,7 @@
     "jest": "^25.2.6",
     "lint-staged": "^10.1.1",
     "npm": "^6.14.4",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.0.2",
-    "run": "^1.4.0"
+    "prettier": "^2.0.2"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -48,7 +47,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test && lint-staged"
+      "pre-commit": "npm run build-client && npm run test && lint-staged"
     }
   }
 }

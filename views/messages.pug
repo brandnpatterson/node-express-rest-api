@@ -1,5 +1,8 @@
 extends layout
 
+block head
+    link(rel="stylesheet", href="dist/css/messages/style.css")
+
 block content
     h1 JS Framework
     ul
@@ -7,3 +10,6 @@ block content
         li sent
         li drafts
         li scheduled
+
+block footer
+    script(src='dist/js/messages.bundle.js')
