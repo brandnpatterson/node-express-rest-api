@@ -1,8 +1,8 @@
 {
-  "name": "penpals",
+  "name": "node-app",
   "private": true,
   "version": "1.0.0",
-  "description": "penpals",
+  "description": "node-app",
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {

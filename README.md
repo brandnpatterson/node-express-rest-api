@@ -1,3 +1,3 @@
-# penpals
+# node-app
 
-Pen Pals
+Node App
