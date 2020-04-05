@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  devtool: 'eval-source-map',
   entry: {
     home: './src/js/home',
     auth: './src/js/auth',
