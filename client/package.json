@@ -8,12 +8,13 @@
     "del": "rimraf dist",
     "browser-sync": "browser-sync http://localhost:5000 --files 'dist' --no-notify --no-open",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/**/*",
-    "sass:build": "node-sass src/scss -o dist/css --output-style compressed && npm run autoprefixer",
+    "sass": "node-sass src/scss -o dist/css",
+    "sass:build": "npm run sass --output-style compressed && npm run autoprefixer",
     "webpack:build": "webpack --mode production",
     "build": "npm run webpack:build && npm run sass:build",
-    "sass:dev": "node-sass src/scss -o dist/css && npm run autoprefixer  --watch",
+    "sass:dev": "node-sass src/scss -o dist/css & node-sass src/scss -o dist/css --watch && npm run autoprefixer",
     "webpack:dev": "webpack --mode development --watch",
-    "dev": "npm run del && npm run sass:dev & npm run webpack:dev && npm run browser-sync"
+    "dev": "npm run del && npm run sass:dev & npm run webpack:dev & npm run browser-sync"
   },
   "author": "Brandon Patterson",
   "devDependencies": {
