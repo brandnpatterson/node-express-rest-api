@@ -9,5 +9,5 @@ app.use(express.static('client'));
 app.use('/', router);
 
 app.listen(port, () => {
-  console.log(`Node is listening at http://localhost:${port}!`);
+  console.log(`Node is listening at http://localhost:${port}`);
 });
