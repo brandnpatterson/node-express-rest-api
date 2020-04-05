@@ -46,7 +46,7 @@
     "*.+(js)": [
       "npm run lint:all"
     ],
-    "**/*.+(js)": [
+    "**/**/*.+(js)": [
       "npm run format"
     ]
   },
