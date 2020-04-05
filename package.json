@@ -9,7 +9,7 @@
     "start": "nodemon index.js --ignore client",
     "start:client": "npm run dev --prefix client",
     "dev": "npm run start & npm run start:client",
-    "lint": "eslint . --ignore-path .gitignore",
+    "lint": "eslint .",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
     "format": "npm run prettier -- --write",
     "test": "jest",
@@ -42,7 +42,7 @@
   },
   "lint-staged": {
     "*.+(js)": [
-      "eslint"
+      "npm run lint"
     ],
     "**/*.+(js)": [
       "npm run format"
@@ -50,7 +50,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test:all && lint-staged"
+      "pre-commit": "lint-staged"
     }
   }
 }
