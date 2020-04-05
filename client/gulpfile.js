@@ -1,40 +1,31 @@
 const { dest, parallel, series, src, watch } = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const browserSync = require('browser-sync').create();
-const minimist = require('minimist');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const webpack = require('webpack-stream');
 
 const paths = {
   dist: './dist',
+  js: './src/js',
   scss: './src/scss'
 };
 
-const knownFlags = {
-  boolean: ['production'],
-  default: {
-    production: false
-  }
-};
-
-const flags = minimist(process.argv.slice(2), knownFlags);
-
-function stylesTask() {
+function stylesTask(outputStyle) {
   return src(`${paths.scss}/**/*.scss`)
     .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle: flags.production ? 'compressed' : 'expanded' }))
+    .pipe(sass({ outputStyle }))
     .pipe(autoprefixer({ cascade: false }))
     .pipe(sourcemaps.write('/'))
-    .pipe(dest(`${paths.dist}/css`));
+    .pipe(dest(`${paths.dist}/css`))
+    .pipe(browserSync.stream());
 }
 
-function scriptsTask() {
+function scriptsTask(webpackConfig) {
   return src(`${paths.js}/**/*.js`)
     .pipe(
       webpack({
-        mode: flags.production ? 'production' : 'development',
-        devtool: flags.production ? 'none' : 'eval-source-map',
+        ...webpackConfig,
         ...require('./webpack.config.js')
       })
     )
@@ -42,8 +33,31 @@ function scriptsTask() {
     .pipe(browserSync.stream());
 }
 
+function stylesBuild() {
+  return stylesTask('compressed');
+}
+
+function stylesDev() {
+  return stylesTask('expanded');
+}
+
+function scriptsBuild() {
+  return scriptsTask({
+    mode: 'production'
+  });
+}
+
+function scriptsDev() {
+  return scriptsTask({
+    mode: 'development'
+  });
+}
+
 function watchTask() {
-  watch([`${paths.scss}/**/*.scss`], stylesTask);
+  watch(
+    [`${paths.scss}/**/*.scss`, `${paths.js}/**/*.js`],
+    series(parallel(stylesDev, scriptsDev))
+  );
 }
 
 function startServer() {
@@ -56,7 +70,7 @@ function startServer() {
   watchTask();
 }
 
-exports.styles = stylesTask;
-exports.scripts = scriptsTask;
-exports.build = series(stylesTask, scriptsTask);
-exports.default = series(parallel(stylesTask, scriptsTask), startServer);
+exports.styles = stylesDev;
+exports.scripts = scriptsDev;
+exports.build = series(stylesBuild, scriptsBuild);
+exports.default = series(parallel(stylesDev, scriptsDev), startServer);
