@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": "Brandon Patterson",
   "scripts": {
     "del": "rimraf dist",
     "browser-sync": "browser-sync http://localhost:5000 --files 'dist' --no-notify --no-open",
@@ -14,9 +15,10 @@
     "build": "npm run webpack:build && npm run sass:build",
     "sass:dev": "node-sass src/scss -o dist/css & node-sass src/scss -o dist/css --watch && npm run autoprefixer",
     "webpack:dev": "webpack --mode development --watch",
-    "dev": "npm run del && npm run sass:dev & npm run webpack:dev & npm run browser-sync"
+    "dev": "npm run del && npm run sass:dev & npm run webpack:dev & npm run browser-sync",
+    "lint": "eslint .",
+    "test": "jest"
   },
-  "author": "Brandon Patterson",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
@@ -24,6 +26,9 @@
     "autoprefixer": "^9.7.5",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.7",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.19.0",
+    "jest": "^25.2.7",
     "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
     "postcss-cli": "^7.1.0",
@@ -33,5 +38,15 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setup/setupTests.js"
+    ],
+    "testEnvironment": "node",
+    "rootDir": "./",
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/setup"
+    ]
   }
 }
