@@ -42,7 +42,7 @@
   },
   "lint-staged": {
     "*.+(js)": [
-      "eslint"
+      "npm run lint"
     ],
     "**/*.+(js)": [
       "npm run format"
