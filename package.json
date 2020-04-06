@@ -7,11 +7,12 @@
   "author": "Brandon Patterson",
   "scripts": {
     "client-install": "npm install --prefix client",
+    "client-build": "npm run build --prefix client",
+    "client-setup": "npm run client-install && npm run client-build",
     "start": "node index.js",
     "server": "nodemon index.js --ignore client",
-    "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-setup",
     "lint": "eslint .",
     "lint-client": "npm run lint --prefix client",
     "lint-all": "npm run lint && npm run lint-client",
@@ -22,10 +23,13 @@
     "test-all": "concurrently \"npm run test\" \"npm run test-client\""
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "sequelize": "^5.21.6"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",

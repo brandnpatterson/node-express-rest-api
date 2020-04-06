@@ -37,6 +37,9 @@
     "webpack-cli": "^3.3.11",
     "webpack-stream": "^5.2.1"
   },
+  "optionalDependencies": {
+    "cypress": "^4.3.0"
+  },
   "jest": {
     "setupFilesAfterEnv": [
       "<rootDir>/test/setup/setupTests.js"
