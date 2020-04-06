@@ -1,3 +1,3 @@
-# node-app
+# app-node-react
 
-Node App
+App built with Node and React
