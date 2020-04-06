@@ -1,5 +1,13 @@
-exports.home = (req, res) => {
-  res.render('home');
+const Post = require('../models/Post');
+
+exports.home = async (req, res) => {
+  try {
+    const posts = await Post.findAll();
+
+    res.render('home', { posts });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 exports.auth = (req, res) => {
