@@ -8,7 +8,7 @@
   "scripts": {
     "client-install": "npm install --prefix client",
     "client-build": "npm run build --prefix client",
-    "client-setup": "npm run client-install && npm run client-build",
+    "client-setup": "npm run client-install --dev && npm run client-build",
     "start": "node index.js",
     "server": "nodemon index.js --ignore client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
