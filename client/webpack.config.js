@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   entry: {
     home: './src/js/home',
@@ -8,8 +6,7 @@ module.exports = {
     profile: './src/js/profile'
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/js')
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [

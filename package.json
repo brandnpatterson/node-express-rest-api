@@ -6,17 +6,20 @@
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
-    "start": "nodemon index.js --ignore client",
-    "start:client": "npm run dev --prefix client",
-    "dev": "npm run start & npm run start:client",
+    "client-install": "npm install --prefix client",
+    "start": "node index.js",
+    "server": "nodemon index.js --ignore client",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run client",
     "lint": "eslint .",
-    "lint:client": "npm run lint --prefix client",
-    "lint:all": "npm run lint && npm run lint:client",
+    "lint-client": "npm run lint --prefix client",
+    "lint-all": "npm run lint && npm run lint-client",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
     "format": "npm run prettier -- --write",
     "test": "jest",
-    "test:client": "npm run test --prefix client",
-    "test:all": "npm run test && npm run test:client"
+    "test-client": "npm run test --prefix client",
+    "test-all": "concurrently \"npm run test\" \"npm run test-client\""
   },
   "dependencies": {
     "dotenv": "^8.2.0",
@@ -25,6 +28,7 @@
     "pug": "^2.0.4"
   },
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "husky": "^4.2.3",
@@ -44,7 +48,7 @@
   },
   "lint-staged": {
     "*.+(js)": [
-      "npm run lint:all"
+      "npm run lint-all"
     ],
     "**/**/*.+(js)": [
       "npm run format"
@@ -52,7 +56,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test:all && lint-staged"
+      "pre-commit": "npm run test-all && lint-staged"
     }
   }
 }

@@ -49,15 +49,14 @@ function scriptsBuild() {
 
 function scriptsDev() {
   return scriptsTask({
-    mode: 'development'
+    mode: 'development',
+    devtool: 'eval-cheap-source-map'
   });
 }
 
 function watchTask() {
-  watch(
-    [`${paths.scss}/**/*.scss`, `${paths.js}/**/*.js`],
-    series(parallel(stylesDev, scriptsDev))
-  );
+  watch(`${paths.scss}/**/*.scss`, stylesDev);
+  watch(`${paths.js}/**/*.js`, scriptsDev);
 }
 
 function startServer() {
@@ -70,7 +69,5 @@ function startServer() {
   watchTask();
 }
 
-exports.styles = stylesDev;
-exports.scripts = scriptsDev;
 exports.build = series(stylesBuild, scriptsBuild);
 exports.default = series(parallel(stylesDev, scriptsDev), startServer);
