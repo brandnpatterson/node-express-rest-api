@@ -22,6 +22,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.7",
+    "cypress": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-loader": "^4.0.0",
@@ -36,9 +37,6 @@
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-stream": "^5.2.1"
-  },
-  "optionalDependencies": {
-    "cypress": "^4.3.0"
   },
   "jest": {
     "setupFilesAfterEnv": [
