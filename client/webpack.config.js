@@ -1,9 +1,9 @@
 module.exports = {
   entry: {
-    home: './src/js/home',
-    auth: './src/js/auth',
-    messages: './src/js/messages',
-    profile: './src/js/profile'
+    home: './js/home',
+    auth: './js/auth',
+    messages: './js/messages',
+    profile: './js/profile'
   },
   output: {
     filename: '[name].bundle.js'

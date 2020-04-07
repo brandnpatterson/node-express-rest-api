@@ -7,8 +7,8 @@ const webpack = require('webpack-stream');
 
 const paths = {
   dist: './dist',
-  js: './src/js',
-  scss: './src/scss'
+  js: './js',
+  scss: './scss'
 };
 
 function stylesTask(outputStyle) {
