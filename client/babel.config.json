@@ -9,6 +9,7 @@
         "debug": false
       }
     ],
+    "@babel/preset-typescript",
     "@babel/preset-react"
   ]
 }

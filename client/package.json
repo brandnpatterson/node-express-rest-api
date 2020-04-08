@@ -6,8 +6,10 @@
   "author": "Brandon Patterson",
   "scripts": {
     "start": "gulp",
-    "build": "gulp build",
-    "lint": "eslint .",
+    "build:types": "tsc",
+    "build:js": "gulp build",
+    "build": "npm run build:types && npm run build:js",
+    "lint": "eslint . --ext .js,.ts,.tsx",
     "test": "jest"
   },
   "dependencies": {
@@ -20,6 +22,10 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "@testing-library/react": "^10.0.2",
+    "@types/react": "^16.9.32",
+    "@types/react-dom": "^16.9.6",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.7",
@@ -35,6 +41,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "jest": "^25.2.7",
+    "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-stream": "^5.2.1"

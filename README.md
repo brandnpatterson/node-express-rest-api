@@ -1,3 +1,3 @@
-# app-node-react
+# ts-node-react
 
-App built with Node and React
+App built with TypeScript, Node, and React

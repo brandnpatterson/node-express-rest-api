@@ -1,5 +1,6 @@
 .DS_Store
 client
+dist
 models
 migrations
 node_modules

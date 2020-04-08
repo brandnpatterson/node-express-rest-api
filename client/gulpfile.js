@@ -7,22 +7,14 @@ const webpack = require('webpack-stream');
 
 const paths = {
   dist: './dist',
-  js: './js',
-  scss: './scss'
+  scss: './scss',
+  src: './src'
 };
 
-function stylesTask(outputStyle) {
-  return src(`${paths.scss}/**/*.scss`)
-    .pipe(sourcemaps.init())
-    .pipe(sass({ outputStyle }))
-    .pipe(autoprefixer({ cascade: false }))
-    .pipe(sourcemaps.write('/'))
-    .pipe(dest(`${paths.dist}/css`))
-    .pipe(browserSync.stream());
-}
-
 function scriptsTask(webpackConfig) {
-  return src(`${paths.js}/**/*.js`)
+  console.log('Building client...');
+
+  return src(`${paths.dist}`)
     .pipe(
       webpack({
         ...webpackConfig,
@@ -33,12 +25,14 @@ function scriptsTask(webpackConfig) {
     .pipe(browserSync.stream());
 }
 
-function stylesBuild() {
-  return stylesTask('compressed');
-}
-
-function stylesDev() {
-  return stylesTask('expanded');
+function stylesTask(outputStyle) {
+  return src(`${paths.scss}/**/*.scss`)
+    .pipe(sourcemaps.init())
+    .pipe(sass({ outputStyle }))
+    .pipe(autoprefixer({ cascade: false }))
+    .pipe(sourcemaps.write('/'))
+    .pipe(dest(`${paths.dist}/css`))
+    .pipe(browserSync.stream());
 }
 
 function scriptsBuild() {
@@ -54,9 +48,17 @@ function scriptsDev() {
   });
 }
 
+function stylesBuild() {
+  return stylesTask('compressed');
+}
+
+function stylesDev() {
+  return stylesTask('expanded');
+}
+
 function watchTask() {
   watch(`${paths.scss}/**/*.scss`, stylesDev);
-  watch(`${paths.js}/**/*.js`, scriptsDev);
+  watch(`${paths.src}/**/*.+(js|ts|tsx)`, scriptsDev);
 }
 
 function startServer() {
@@ -69,5 +71,7 @@ function startServer() {
   watchTask();
 }
 
+exports.styles = stylesBuild;
+exports.scripts = scriptsBuild;
 exports.build = series(stylesBuild, scriptsBuild);
 exports.default = series(parallel(stylesDev, scriptsDev), startServer);
