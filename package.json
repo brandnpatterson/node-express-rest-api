@@ -1,8 +1,8 @@
 {
-  "name": "node-app",
+  "name": "app-node-react",
   "private": true,
   "version": "1.0.0",
-  "description": "node-app",
+  "description": "app-node-react",
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
@@ -18,7 +18,7 @@
     "format": "npm run prettier -- --write",
     "test": "jest",
     "test:all": "concurrently \"npm run test\" \"npm run test --prefix client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:client && npm run build:client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:client --dev && npm run build:client"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
