@@ -6,22 +6,19 @@
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
-    "client-install": "npm install --prefix client",
-    "client-build": "npm run build --prefix client",
-    "client-setup": "npm run client-install --dev && npm run client-build",
+    "install:client": "npm install --prefix client",
+    "build:client": "npm run build --prefix client",
     "client": "npm start --prefix client",
-    "start": "node index.js",
-    "server": "nodemon index.js --ignore client",
+    "start": "node .",
+    "server": "nodemon .",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-setup",
     "lint": "eslint .",
-    "lint-client": "npm run lint --prefix client",
-    "lint-all": "npm run lint && npm run lint-client",
+    "lint:all": "eslint . && npm run lint --prefix client",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
     "format": "npm run prettier -- --write",
     "test": "jest",
-    "test-client": "npm run test --prefix client",
-    "test-all": "concurrently \"npm run test\" \"npm run test-client\""
+    "test:all": "concurrently \"npm run test\" \"npm run test --prefix client\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -54,7 +51,7 @@
   },
   "lint-staged": {
     "*.+(js)": [
-      "npm run lint-all"
+      "npm run lint:all"
     ],
     "**/**/*.+(js)": [
       "npm run format"
@@ -62,7 +59,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test-all && lint-staged"
+      "pre-commit": "npm run test:all && lint-staged"
     }
   }
 }
