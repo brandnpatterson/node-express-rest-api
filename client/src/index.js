@@ -5,10 +5,10 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import Home from './pages/Home2';
-import Messages from './pages/Messages2';
-import Profile from './pages/Profile2';
-import Users from './pages/Users2';
+import Home from './pages/Home';
+import Messages from './pages/Messages';
+import Profile from './pages/Profile';
+import Users from './pages/Users';
 
 function App() {
   return (
