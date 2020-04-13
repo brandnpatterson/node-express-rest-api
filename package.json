@@ -16,7 +16,7 @@
     "format": "npm run prettier -- --write",
     "test": "jest",
     "test:all": "concurrently \"npm run test\" \"npm run test --prefix client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client --dev && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --dev --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
