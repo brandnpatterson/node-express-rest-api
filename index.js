@@ -1,16 +1,20 @@
 require('dotenv').config();
 
 const express = require('express');
-const bodyParser = require('body-parser');
-const router = require('./routes');
+const path = require('path');
+const postsRoutes = require('./routes/posts');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.set('view engine', 'pug');
-app.use(express.static('client'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', router);
+app.use('/api/posts', postsRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Node is listening at http://localhost:${PORT}`);

@@ -1,12 +1,12 @@
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  entry: {
-    home: './src/home',
-    auth: './src/auth',
-    messages: './src/messages',
-    profile: './src/profile'
-  },
+  entry: './src/index.js',
   output: {
-    filename: '[name].bundle.js'
+    path: path.join(__dirname, 'build/'),
+    filename: '[name].js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -29,5 +29,19 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  devServer: {
+    overlay: true,
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://localhost:5000'
+    }
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: './public/index.html',
+      filename: './index.html',
+      inject: true
+    })
+  ]
 };
