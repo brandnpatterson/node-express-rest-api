@@ -7,25 +7,25 @@ router.get('/', async (req, res) => {
 
     res.json(posts);
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send('Internal Server Error');
   }
 });
 
 router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
   try {
     const post = await Post.findOne({
-      where: {
-        id: req.params.id
-      }
+      where: { id }
     });
 
     if (!post) {
-      return res.status(404).json({ msg: 'Post not found' });
+      return res.json({ id, message: 'No Post exists with this id' });
     }
 
     res.json(post);
   } catch (err) {
-    res.status(500).send('Server Error');
+    res.status(500).send('Internal Server Error');
   }
 });
 

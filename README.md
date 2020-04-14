@@ -1,3 +1,3 @@
-# app-node-react
+# node-api-spa
 
-App built with Node and React
+Node API and Front End SPA
