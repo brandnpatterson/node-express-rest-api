@@ -1,8 +1,8 @@
 {
-  "name": "app-node-react",
+  "name": "node-api-spa",
   "private": true,
   "version": "1.0.0",
-  "description": "app-node-react",
+  "description": "node-api-spa",
   "main": "index.js",
   "author": "Brandon Patterson",
   "scripts": {
