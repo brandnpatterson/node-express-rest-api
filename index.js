@@ -3,7 +3,6 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const usersRoutes = require('./routes/users');
-const postsRoutes = require('./routes/posts');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -11,7 +10,6 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 app.use('/api/users', usersRoutes);
-app.use('/api/posts', postsRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

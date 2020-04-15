@@ -1,3 +1,3 @@
-# node-api-spa
+# node-express-rest-api
 
-Node API and Front End SPA
+Node Express REST API

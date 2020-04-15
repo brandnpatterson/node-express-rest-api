@@ -1,5 +1,3 @@
-.DS_Store
-client
 models
 migrations
 node_modules
