@@ -9,7 +9,5 @@
     "ecmaVersion": 2018
   },
   "extends": ["eslint:recommended", "eslint-config-prettier"],
-  "rules": {
-    "no-console": "error"
-  }
+  "rules": {}
 }
